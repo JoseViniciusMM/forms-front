@@ -4,23 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css">
     <title>Google Formulario</title>
   </head>
-  <body>
-    <div> 
-      <h1>Google Formulario</h1>
-    </div>
-    <div>
-      <form id="forms">
-        <label for=""></label>
-        <input type="text">
-        <!-- span com opções de tipos de perguntas -->
-        <span>
-        </span>
-      </form>
-    </div>
+<body>
+
+    <div class="main">
+        <header class="form">
+            <input type="text" class="title-input" placeholder="Título do Formulário" value="Formulário sem título">
+            <input type="text" class="description-input" placeholder="Descrição do formulário">
+        </header>
+
+        <div id="quest">
+            <div class="questoes">
+                <div class="qt">
+                    <input type="text" class="quest-input" placeholder="Pergunta">
+                    
+                    <div class="select-wrapper">
+                        <select class="type-select">
+                            <option value="curta">Texto de resposta curta</option>
+                            <option value="paragrafo">Parágrafo</option>
+                            <option value="multipla">Múltipla escolha</option>
+                            <option value="caixas">Caixas de seleção</option>
+                            <option value="suspensa">Lista suspensa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-section">
+            <button class="btn-add" onclick="addNewQuestion()">
+                <span class="plus-icon">+</span> Adicionar Pergunta
+            </button>
+        </div>
+</body>
     <script type="module" src="/src/main.ts"></script>
-  </body>
 </html>
 
 
