@@ -1,54 +1,41 @@
-import './style.css'
-import { v4 as uuidv4 } from 'uuid' 
+const app = document.querySelector<HTMLDivElement>('#app')!
+const btnAddInput = document.querySelector<HTMLButtonElement>('.btn-add')!
 
-const questContainer = document.querySelector<HTMLDivElement>("#quest");
-const btnAdd = document.querySelector<HTMLButtonElement>(".btn-add");
+const idCampo = document.querySelector<HTMLInputElement>('.id-input')!
+const tipoCampo = document.querySelector<HTMLSelectElement>('.type-select')!
+const labelCampo = document.querySelector<HTMLInputElement>('.label-input')!
 
-interface Questao {
+btnAddInput.addEventListener('click', (e) => {
+  e.preventDefault();
+  addInput(idCampo.value, tipoCampo.value, labelCampo.value);
+})
+
+interface Campo {
   id: string;
-  pergunta: string;
   tipo: string;
+  label: string;
 }
 
-let listaQuestoes: Questao[] = [];
-
-function imprimirQuestoes() {
-  if (questContainer) {
-    questContainer.innerHTML = listaQuestoes.map(q => `
-      <div class="questoes" data-id="${q.id}">
-        <div class="qt">
-            <input type="text" class="quest-input" value="${q.pergunta}" readonly>
-            <div class="select-wrapper">
-                <select class="type-select" disabled>
-                    <option>${q.tipo}</option>
-                </select>
-            </div>
-        </div>
-      </div>
-    `).join('');
-  }
+interface Formulario {
+  campos: Campo[];
 }
 
-
-function addNewQuestion() {
-    const inputPergunta = document.querySelector<HTMLInputElement>(".quest-input");
-    const selectTipo = document.querySelector<HTMLSelectElement>(".type-select");
-
-    if (inputPergunta && inputPergunta.value.trim() !== "") {
-        const novaQuestao: Questao = {
-            id: uuidv4(),
-            pergunta: inputPergunta.value,
-            tipo: selectTipo?.options[selectTipo.selectedIndex].text || "Texto"
-        };
-
-        listaQuestoes.push(novaQuestao);
-        imprimirQuestoes();
-
-        inputPergunta.value = "";
-    }
+const formulario: Formulario = {
+  campos: []
 }
 
-btnAdd?.addEventListener('click', (e) => {
-    e.preventDefault();
-    addNewQuestion();
-});
+function addInput(id: string, tipo: string, label: string) {
+  const novoCampo: Campo = { id, tipo, label }
+  formulario.campos.push(novoCampo)
+  
+  renderCampos()
+}
+
+function renderCampos() {
+  app.innerHTML = formulario.campos.map(campo => `
+    <div>
+      <label for="${campo.id}">${campo.label}</label>
+      <input type="${campo.tipo}" id="${campo.id}">
+    </div>
+  `).join('');
+}
