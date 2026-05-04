@@ -5,26 +5,63 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/style.css">
-    <title>Google Formulario</title>
+    <title>Google Formulário</title>
   </head>
   <body>
-    <div>
-      <div>
-        <label for="idCampo">Id do campo</label>
-        <input type="text" id="idCampo" />
-      </div>
-      <div>
-        <label for="tipoCampo">Tipo</label>
-        <input type="text" id="tipoCampo" value="text" />
-      </div>
-      <div>
-        <label for="labelCampo">Label</label>
-        <input type="text" id="labelCampo" />
-      </div>
-      <button id="btnAddInput">Adicionar input</button>
-    </div>
+    <main>
+      <header>
+        <h1>Criador de Formulários</h1>
+        <p>Adicione campos dinâmicos ao seu formulário</p>
+      </header>
 
-    <div id="app"></div>
+      <section class="form-builder">
+        <div class="form-section">
+          <h2>Configurar Novo Campo</h2>
+          
+          <form id="configForm" class="config-form">
+            <div class="form-group">
+              <label for="idCampo">Id do campo</label>
+              <input 
+                type="text" 
+                id="idCampo" 
+                placeholder="ex: campo_1"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="tipoCampo">Tipo</label>
+              <input 
+                type="text" 
+                id="tipoCampo" 
+                value="text"
+                placeholder="ex: text, email, number"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="labelCampo">Label</label>
+              <input 
+                type="text" 
+                id="labelCampo"
+                placeholder="ex: Digite seu nome"
+                required
+              />
+            </div>
+
+            <button type="button" id="btnAddInput" class="btn btn-primary">
+              + Adicionar Input
+            </button>
+          </form>
+        </div>
+
+        <div class="form-section">
+          <h2>Campos Adicionados</h2>
+          <div id="app" class="fields-container"></div>
+        </div>
+      </section>
+    </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
